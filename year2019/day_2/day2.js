@@ -2,8 +2,8 @@ const add = (code, loc) => {
   const element1Loc = code[loc + 1];
   const element2Loc = code[loc + 2];
   const desLoc = code[loc + 3];
-
   code[desLoc] = code[element1Loc] + code[element2Loc];
+
   return loc + 4;
 };
 
@@ -23,27 +23,41 @@ const instructions = {
 
 const getUserCode = (code) => code.split(",").map((element) => +element);
 
-const sprint = () => {
+
+
+const sprint = (noun,verb) => {
   const code = Deno.readTextFileSync("./day2_Data.txt");
-  let location = 0;
   const program = getUserCode(code);
-  program[1] = 12;
-  program[2] = 2;
-
+  let location = 0;
+  program[1] = noun;
+  program[2] = verb;
   let instruction = program[location];
-
-  while (instruction !== 99) {
-    if (!(instruction in instructions)) {
-      return "invalid instruction";
-    }
-
+  // program[0] !== expexted
+  while (instruction != 99) {
+    
     location = instructions[instruction](program, location);
     instruction = program[location];
+    // console.log(location,actual)
   }
-
-  return program[0];
+  
+  return [program[0],noun,verb];
 };
 
-console.log(sprint());
+// sprint();
 
 
+
+const main = () => {
+  const expexted = 19690720;
+  
+  for (let i = 12; i <= 99; i++){
+    for (let j = 3; j <= 99; j++){
+      const [actual,noun,verb] = sprint(i, j)
+      if (actual === expexted) {
+        return (noun * 100) + verb;
+      }
+    }
+  }
+}
+
+console.log(main())
