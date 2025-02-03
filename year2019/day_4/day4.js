@@ -7,7 +7,7 @@ const isAssendingOrder = (arr) => {
 };
 const isDubble = (arr) => {
   for (let i = 0; i < arr.length - 1; i += 1) {
-    if ((arr[i] !== arr[i - 1]) && (arr[i + 1] !== arr[i + 2])) {
+    if ((arr[i] == arr[i - 1]) && (arr[i + 1] !== arr[i + 2])) {
       if (arr[i] === arr[i + 1]) {
         
         return true;
@@ -17,7 +17,7 @@ const isDubble = (arr) => {
   return false;
 };
 
-// const areAllSame = (arr) => {                       //122444 
+// const areAllSame = (arr) => {                       //122444  123456
 //   for (let i = 0; i < arr.length - 2; i++) {
 //     if (arr[i]!==arr[i+1]) {
 //       return false;

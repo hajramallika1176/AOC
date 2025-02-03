@@ -28,7 +28,7 @@ const getUserCode = (code) => code.split(",").map((element) => +element);
 const sprint = (noun,verb) => {
   const code = Deno.readTextFileSync("./day2_Data.txt");
   const program = getUserCode(code);
-  let location = 0;
+  let location = 0;                  
   program[1] = noun;
   program[2] = verb;
   let instruction = program[location];
